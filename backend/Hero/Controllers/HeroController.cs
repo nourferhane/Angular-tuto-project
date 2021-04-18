@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using HeroProject.Data;
+using HeroProject.Models;
 using Microsoft.AspNetCore.Cors;
 
 namespace HeroProject.Controllers
@@ -20,14 +23,14 @@ namespace HeroProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Models.Hero> GetAllHeros()
+        public ActionResult<IEnumerable<Hero>> GetAllHeros()
         {
             var heros = _heroRepository.GetHeroes();
             return Ok(heros);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Models.Hero> GetHeroById(int id)
+        public ActionResult<Hero> GetHeroById(int id)
         {
             var hero = _heroRepository.GetById(id);
             if (hero == null)
