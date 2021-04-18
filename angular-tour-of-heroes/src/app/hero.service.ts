@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Hero} from './Hero';
+import { Hero } from './Hero';
 import { HEROES } from './mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
@@ -10,23 +10,26 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class HeroService {
-  private heroesUrl = 'api/heroes';
+  private heroesUrl = 'https://localhost:44361/api/heros';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin':'*',
+    })
   };
-  constructor(private messageService:MessageService,
+  constructor(private messageService: MessageService,
     private http: HttpClient,) { }
 
-  getHeroes():Observable< Hero[]> {
-    console.log( this.http.get<Hero[]>(this.heroesUrl));
+  getHeroes(): Observable<Hero[]> {
+    console.log(this.http.get<Hero[]>(this.heroesUrl, this.httpOptions));
     return this.http.get<Hero[]>(this.heroesUrl)
-    .pipe(
-      catchError(this.handleError<Hero[]>('getHeroes', []))
-    );
+      .pipe(
+        catchError(this.handleError<Hero[]>('getHeroes', []))
+      );
   }
 
-  getHero(id:number):Observable< Hero> {
+  getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
       tap(_ => console.log(`fetched hero id=${id}`)),
@@ -35,8 +38,8 @@ export class HeroService {
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
-      console.error(error); 
+
+      console.error(error);
 
       return of(result as T);
     };
@@ -57,7 +60,7 @@ export class HeroService {
   }
   deleteHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
-  
+
     return this.http.delete<Hero>(url, this.httpOptions).pipe(
       tap(_ => console.log(`deleted hero id=${id}`)),
       catchError(this.handleError<Hero>('deleteHero'))
@@ -70,8 +73,8 @@ export class HeroService {
     }
     return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-         console.log(`found heroes matching "${term}"`) :
-         console.log(`no heroes matching "${term}"`)),
+        console.log(`found heroes matching "${term}"`) :
+        console.log(`no heroes matching "${term}"`)),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
