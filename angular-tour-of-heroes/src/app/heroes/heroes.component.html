@@ -1,14 +1,29 @@
-<h2>My Heroes</h2>
-<ul class="heroes">
-    <li *ngFor="let hero of heroes">
-        <a routerLink="/detail/{{hero.id}}" ></a>
-        <span class="badge">{{hero.id}}</span>{{hero.name}}
-        <button class="delete" title="delete hero"
-  (click)="delete(hero)">x</button>
-    </li>
-</ul>
+<div class="row"  >
+    <div class="mt-1 col-sm-12 col-md-3" *ngFor="let hero of heroes">
+        <div class="card" >
+            <div class="card-body" >
+                
+                <h5 class="card-title center">{{hero.name}}</h5>
 
-<app-hero-detail ></app-hero-detail>
+                <div class="mt-3"  >
+                    <button type="button" class="btn btn-success float-left" routerLink="/detail/{{hero.id}}" >
+                        Detail
+                    </button>
+                    <button type="button" class="btn btn-danger float-right" (click)="Log(hero.id)">
+                        Delete
+                    </button>
+                </div>
+
+            </div>
+            <app-hero-detail ></app-hero-detail>
+
+        </div>
+    </div>
+</div>
+
+
+
+
 <div>
     <label id="new-hero">Hero name: </label>
     <input for="new-hero" #heroName />

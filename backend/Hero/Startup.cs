@@ -31,14 +31,12 @@ namespace HeroProject
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddCors();
-            services.AddCors(options =>
+            services.AddCors(o => o.AddPolicy("policy", builder =>
             {
-                options.AddPolicy("policy",
-                    builder =>
-                    {
-                        builder.WithOrigins("http://localhost:4200");
-                    });
-            });
+                builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+            }));
 
         }
 
