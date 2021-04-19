@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using HeroProject.Data;
+using HeroProject.Dtos;
 using HeroProject.Models;
 using Microsoft.AspNetCore.Cors;
 
@@ -17,26 +20,36 @@ namespace HeroProject.Controllers
         /// </summary>
         private readonly IHeroRepository _heroRepository;
 
-        public HeroController(IHeroRepository heroRepository)
+        /// <summary>
+        /// 
+        /// </summary>
+        private readonly IMapper _mapper;
+
+        public HeroController(IHeroRepository heroRepository, IMapper mapper)
         {
             _heroRepository = heroRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Hero>> GetAllHeros()
+        public ActionResult<IEnumerable<HeroDto>> GetAllHeros()
         {
             var heros = _heroRepository.GetHeroes();
-            return Ok(heros);
+            if (!heros.Any())
+                return BadRequest("empty data");
+            return Ok(_mapper.Map<IEnumerable<HeroDto>>(heros));
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Hero> GetHeroById(int id)
+        public ActionResult<HeroDto> GetHeroById(int id)
         {
             var hero = _heroRepository.GetById(id);
             if (hero == null)
-                return BadRequest();
+            {
+                return NotFound();
+            }
 
-            return Ok(hero);
+            return Ok(_mapper.Map<HeroDto>(hero));
         }
 
 

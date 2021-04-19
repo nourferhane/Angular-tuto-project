@@ -1,11 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace HeroProject.Models
+﻿namespace HeroProject.Dtos
 {
     /// <summary>
-    /// The Hero Class.
+    /// The Hero dto Class.
     /// </summary>
-    public class Hero
+    public class HeroDto
     {
         /// <summary>
         /// The Identifier.
@@ -13,9 +11,8 @@ namespace HeroProject.Models
         public int Id { get; set; }
 
         /// <summary>
-        /// The name of the hero.
+        /// the name of the hero.
         /// </summary>
-        [Required]
         public string Name { get; set; }
     }
 }

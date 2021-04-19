@@ -27,3 +27,5 @@ C:\Users\Nough\Desktop\Angular Project\backend\Hero\obj\Debug\net5.0\HeroProject
 C:\Users\Nough\Desktop\Angular Project\backend\Hero\obj\Debug\net5.0\ref\HeroProject.dll
 C:\Users\Nough\Desktop\Angular Project\backend\Hero\obj\Debug\net5.0\HeroProject.pdb
 C:\Users\Nough\Desktop\Angular Project\backend\Hero\obj\Debug\net5.0\HeroProject.genruntimeconfig.cache
+C:\Users\Nough\Desktop\Angular Project\backend\Hero\bin\Debug\net5.0\AutoMapper.dll
+C:\Users\Nough\Desktop\Angular Project\backend\Hero\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

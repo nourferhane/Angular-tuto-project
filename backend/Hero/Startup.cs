@@ -1,3 +1,4 @@
+using System;
 using HeroProject.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,7 @@ namespace HeroProject
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hero", Version = "v1" });
             });
             services.AddScoped<IHeroRepository, MockHeroRepository>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddCors();
             services.AddCors(options =>
