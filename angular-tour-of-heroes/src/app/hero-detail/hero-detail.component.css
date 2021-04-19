@@ -28,3 +28,8 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
+
+input{
+    width: 30%;
+}
+

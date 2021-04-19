@@ -1,9 +1,9 @@
-<div *ngIf="hero">
+<div class="container" *ngIf="hero">
 
-    <div>
-      <label for="hero-name">Hero name: </label>
-      <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
-      <button (click)="save()">save</button>
+    <div class="row">
+     <div class="col-sm-4"><label for="hero-name">Hero name: </label></div> 
+     <div class="col-sm-4"> <input id="hero-name" [(ngModel)]="hero.name" placeholder="name"></div>
+     <div class="col-sm-4"><button (click)="save()">save</button></div> 
 
     </div>
   

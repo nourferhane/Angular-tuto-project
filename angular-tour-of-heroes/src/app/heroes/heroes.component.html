@@ -1,12 +1,12 @@
-<div class="row"  >
+<div class="row">
     <div class="mt-1 col-sm-12 col-md-3" *ngFor="let hero of heroes">
-        <div class="card" >
-            <div class="card-body" >
-                
+        <div class="card">
+            <div class="card-body">
+
                 <h5 class="card-title center">{{hero.name}}</h5>
 
-                <div class="mt-3"  >
-                    <button type="button" class="btn btn-success float-left" routerLink="/detail/{{hero.id}}" >
+                <div class="mt-3">
+                    <button type="button" class="btn btn-success float-left" routerLink="/detail/{{hero.id}}">
                         Detail
                     </button>
                     <button type="button" class="btn btn-danger float-right" (click)="Log(hero.id)">
@@ -15,7 +15,7 @@
                 </div>
 
             </div>
-            <app-hero-detail ></app-hero-detail>
+            <app-hero-detail></app-hero-detail>
 
         </div>
     </div>
@@ -27,9 +27,9 @@
 <div>
     <label id="new-hero">Hero name: </label>
     <input for="new-hero" #heroName />
-  
+
     <!-- (click) passes input value to add() and then clears the input -->
     <button class="add-button" (click)="add(heroName.value); heroName.value=''">
-      Add hero
+        Add hero
     </button>
-  </div>
+</div>
