@@ -27,7 +27,7 @@ namespace HeroProject
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hero", Version = "v1" });
             });
-            services.AddScoped<IHeroRepository, MockHeroRepository>();
+            services.AddSingleton<IHeroRepository, MockHeroRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddCors();

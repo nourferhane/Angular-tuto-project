@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Hero = HeroProject.Models.Hero;
 
 namespace HeroProject.Data
@@ -48,6 +49,12 @@ namespace HeroProject.Data
         public Models.Hero GetById(int id)
         {
             return heroList.Find(h => h.Id == id);
+        }
+
+        public void CreateHero(Hero hero)
+        {
+            hero.Id = heroList.Last().Id + 1;
+            heroList.Add(hero);
         }
     }
 }

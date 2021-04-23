@@ -52,6 +52,14 @@ namespace HeroProject.Controllers
             return Ok(_mapper.Map<HeroDto>(hero));
         }
 
+        [HttpPost()]
+        public ActionResult CreateHero(Hero hero)
+        {
+            _heroRepository.CreateHero(hero);
+
+            return Ok(204);
+        }
+
 
     }
 }
