@@ -16,7 +16,7 @@ export class HeroesComponent implements OnInit {
 
   heroes : Hero[] =[];
 
-  constructor(private heroService: HeroService,@Inject(DOCUMENT) private document: Document) { }
+  constructor(private heroService: HeroService,) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -32,7 +32,7 @@ export class HeroesComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
-      .subscribe(() => this.document.location.reload());
+      .subscribe(() => this.ngOnInit());
   }
 
   delete(hero: Hero): void {
@@ -41,6 +41,6 @@ export class HeroesComponent implements OnInit {
   }
   Delete(id : number){
     this.heroService.deleteHero(id)
-      .subscribe(() => this.document.location.reload());
+      .subscribe(() => this.ngOnInit());
   }
 }

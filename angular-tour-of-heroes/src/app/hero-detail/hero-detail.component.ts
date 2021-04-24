@@ -14,7 +14,7 @@ import { Inject } from '@angular/core';
 export class HeroDetailComponent implements OnInit {
   @Input('data') hero : Hero;
   constructor(private route:ActivatedRoute, private heroService:HeroService,
-    private location:Location,@Inject(DOCUMENT) private document: Document) { }
+    private location:Location,) { }
 
   ngOnInit(): void {
    //this.getHero();
@@ -30,7 +30,7 @@ export class HeroDetailComponent implements OnInit {
   }
   save(): void {
   this.heroService.updateHero(this.hero.id,this.hero)
-    .subscribe(() =>this.document.location.reload());
+    .subscribe(() =>this.ngOnInit());
 
 }
 }

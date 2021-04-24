@@ -53,7 +53,7 @@ namespace HeroProject.Data
 
         public void CreateHero(Hero hero)
         {
-            hero.Id = heroList.Last().Id + 1;
+            hero.Id = heroList.Last() == null ? 0 : heroList.Last().Id + 1;
             heroList.Add(hero);
         }
 
