@@ -56,5 +56,22 @@ namespace HeroProject.Data
             hero.Id = heroList.Last().Id + 1;
             heroList.Add(hero);
         }
+
+        public void UpdateHero(int id, Hero hero)
+        {
+            var heroToUpdate = heroList.Find(h => h.Id == id);
+            heroToUpdate.Name = hero.Name;
+            heroList[heroToUpdate.Id] = heroToUpdate;
+        }
+
+        public Hero FindByName(string name)
+        {
+            return heroList.Find(h => h.Name == name);
+        }
+
+        public void DeleteHero(int id)
+        {
+            heroList.RemoveAll(h => h.Id == id);
+        }
     }
 }

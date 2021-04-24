@@ -12,7 +12,14 @@ namespace HeroProject.Data
 
         Models.Hero GetById(int id);
 
-        void CreateHero(Hero hero);
+        void CreateHero(Hero hero);    
+
+        void UpdateHero(int id,Hero hero);
+
+        Hero FindByName(string name);
+
+        void DeleteHero(int id);
+
 
     }
 }

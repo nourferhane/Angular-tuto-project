@@ -60,6 +60,30 @@ namespace HeroProject.Controllers
             return Ok(204);
         }
 
+        [HttpPut("{id}")]
+        public ActionResult UpdateHero(int id,Hero hero)
+        {
+            var heroToUpdate = _heroRepository.GetById(id);
 
+            if (heroToUpdate == null)
+                return BadRequest();
+
+            _heroRepository.UpdateHero(id,hero);
+
+            return Ok(204);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult DeleteHero(int id)
+        {
+            var heroToDelete = _heroRepository.GetById(id);
+
+            if (heroToDelete == null)
+                return BadRequest("NOt found");
+
+            _heroRepository.DeleteHero(id);
+
+            return Ok(204);
+        }
     }
 }

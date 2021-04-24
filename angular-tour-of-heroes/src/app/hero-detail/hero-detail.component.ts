@@ -3,6 +3,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../hero.service';
 import { Location } from '@angular/common';
+import { DOCUMENT } from '@angular/common';
+import { Inject } from '@angular/core';
+
 @Component({
   selector: 'app-hero-detail',
   templateUrl: './hero-detail.component.html',
@@ -11,7 +14,7 @@ import { Location } from '@angular/common';
 export class HeroDetailComponent implements OnInit {
   @Input('data') hero : Hero;
   constructor(private route:ActivatedRoute, private heroService:HeroService,
-    private location:Location,) { }
+    private location:Location,@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
    //this.getHero();
@@ -26,7 +29,8 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
   save(): void {
-  this.heroService.updateHero(this.hero)
-    .subscribe(() => this.goBack());
+  this.heroService.updateHero(this.hero.id,this.hero)
+    .subscribe(() =>this.document.location.reload());
+
 }
 }

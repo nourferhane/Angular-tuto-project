@@ -3,7 +3,8 @@ import { Hero } from '../hero';
 import { HEROES } from '../mock-heroes';
 import { HeroService } from '../hero.service';
 import { Observable } from 'rxjs';
-import { Location, LocationStrategy } from '@angular/common';
+import { DOCUMENT, Location, LocationStrategy } from '@angular/common';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-heroes',
@@ -15,7 +16,7 @@ export class HeroesComponent implements OnInit {
 
   heroes : Hero[] =[];
 
-  constructor(private heroService: HeroService) { }
+  constructor(private heroService: HeroService,@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit() {
     this.getHeroes();
@@ -31,16 +32,15 @@ export class HeroesComponent implements OnInit {
     name = name.trim();
     if (!name) { return; }
     this.heroService.addHero({ name } as Hero)
-      .subscribe(hero => {
-        this.heroes.push(hero);
-      });
+      .subscribe(() => this.document.location.reload());
   }
 
   delete(hero: Hero): void {
     this.heroes = this.heroes.filter(h => h !== hero);
     this.heroService.deleteHero(hero.id).subscribe();
   }
-  Log(event){
-    console.log(event);
+  Delete(id : number){
+    this.heroService.deleteHero(id)
+      .subscribe(() => this.document.location.reload());
   }
 }
