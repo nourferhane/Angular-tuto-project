@@ -10,6 +10,7 @@ namespace HeroProject.Models
         /// <summary>
         /// The Identifier.
         /// </summary>
+        [Key]
         public int Id { get; set; }
 
         /// <summary>

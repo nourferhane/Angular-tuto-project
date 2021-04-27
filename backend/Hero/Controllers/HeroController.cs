@@ -34,7 +34,7 @@ namespace HeroProject.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<HeroDto>> GetAllHeros([FromServices] IHeroRepository heroRepository)
         {
-            var heros = heroRepository.GetHeroes();
+            var heros = _heroRepository.GetHeroes();
             if (!heros.Any())
                 return BadRequest("empty data");
             return Ok(_mapper.Map<IEnumerable<HeroDto>>(heros));
