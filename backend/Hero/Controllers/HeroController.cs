@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +30,7 @@ namespace HeroProject.Controllers
             _mapper = mapper;
         }
 
+  
         [HttpGet]
         public ActionResult<IEnumerable<HeroDto>> GetAllHeros([FromServices] IHeroRepository heroRepository)
         {
