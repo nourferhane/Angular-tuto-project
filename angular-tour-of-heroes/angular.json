@@ -6,7 +6,7 @@
     "angular-tour-of-heroes": {
       "projectType": "application",
       "schematics": {},
-      "root": "",n
+      "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
